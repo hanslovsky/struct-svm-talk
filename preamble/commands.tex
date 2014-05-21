@@ -1,6 +1,7 @@
 % Add a period to the end of an abbreviation unless there's one
 % already, then \xspace.
 % taken from cvpr
+% requires package xspace
 \makeatletter
 \DeclareRobustCommand\onedot{\futurelet\@let@token\@onedot}
 \def\@onedot{\ifx\@let@token.\else.\null\fi\xspace}
@@ -17,4 +18,5 @@
 %%% Local Variables: 
 %%% mode: latex
 %%% TeX-master: "../main"
-%%% End: 
+%%% End:
+
