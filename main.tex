@@ -1,0 +1,36 @@
+\input{preamble/docclass.tex}
+\input{preamble/packages.tex}
+\input{preamble/commands.tex}
+
+
+\title{Structured Learning for Cell Tracking}
+
+\author{Philipp Hanslovsky}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\input{content/cell-tracking}
+
+\input{content/svm}
+
+\input{content/structured-learning-cell-tracking}
+
+\appendix % OPTIONAL
+\newcounter{finalframe}
+\setcounter{finalframe}{\value{framenumber}}
+
+% \input{content/backup}
+
+\setcounter{framenumber}{\value{finalframe}}
+
+\end{document}
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
