@@ -18,7 +18,7 @@ def fitToData( data, labels, C ):
     classifier.fit(data, labels)
     return classifier
 
-def plotData( data, labels, classifier, mesh_step, **kwargs ):
+def plotData( data, labels, classifier, mesh_step, with_margin, **kwargs ):
     if not data.shape[1] == 2:
         raise Exception("only plot 2 dimensional data!")
     
@@ -40,22 +40,35 @@ def plotData( data, labels, classifier, mesh_step, **kwargs ):
     
     contour     = plt.contourf( xx, yy, Z, alpha=0.2, **kwargs )
     scatter     = plt.scatter(data[:, 0], data[:, 1], c = labels, **kwargs )
-    margin      = plt.plot( x, y, 'k-' )
-    margin_up   = plt.plot( x, yy_up, 'k--' )
-    margin_down = plt.plot( x, yy_down, 'k--' )
-    support     = plt.scatter(classifier.support_vectors_[:, 0],
-                              classifier.support_vectors_[:, 1],
-                              facecolors='none',
-                              s = 80)
+    if with_margin:
+        margin      = plt.plot( x, y, 'k-' )
+        margin_up   = plt.plot( x, yy_up, 'k--' )
+        margin_down = plt.plot( x, yy_down, 'k--' )
+        support     = plt.scatter(classifier.support_vectors_[:, 0],
+                                  classifier.support_vectors_[:, 1],
+                                  facecolors='none',
+                                  s = 80)
+    
     plt.axis( [x_min, x_max, y_min, y_max] )
     plt.axis('off')
 
-    return scatter, contour, support, margin, margin_up#, margin_down
+    if with_margin:
+        return scatter, contour, support, margin, margin_up, margin_down
+
+    else:
+        return scatter, contour
     
 
 if __name__ == "__main__":
-    data, labels = generateData(200, ([1., 0.], [4., 3.]), ([[0.8, 0],[0,0.6]],[[1.5, 0],[0,1]]), 100)
+    data, labels = generateData(600, ([1., 0.], [4., 3.]), ([[0.8, 0],[0,0.6]],[[1.5, 0],[0,1]]), 100)
     C = 1.0
     classifier = fitToData( data, labels, C )
-    plotData( data, labels, classifier, mesh_step = 0.02, cmap = 'cool' )
+    plotData( data, labels, classifier, mesh_step = 0.02, cmap = 'cool', with_margin = True )
+    plt.show()
+
+
+    data, labels = generateData(600, ([1., 0.], [5.5, 0.5], [4., 3.]), ([[0.8, 0],[0,0.6]], [[2., 1], [0., 1.]], [[1.5, 0],[0,1]]), 100)
+    C = 1.0
+    classifier = fitToData( data, labels, C)
+    plotData( data, labels, classifier, mesh_step = 0.02, cmap = 'cool', with_margin = False )
     plt.show()
