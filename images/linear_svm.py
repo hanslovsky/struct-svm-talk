@@ -48,7 +48,6 @@ def plotData( data, labels, classifier, mesh_step, with_margin, **kwargs ):
                                   classifier.support_vectors_[:, 1],
                                   facecolors='none',
                                   s = 80)
-    
     plt.axis( [x_min, x_max, y_min, y_max] )
     plt.axis('off')
 

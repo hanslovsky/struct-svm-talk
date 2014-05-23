@@ -39,8 +39,8 @@
             &\textbf{w}^*, b^*  = \argmin_{\textbf{w}, b} \frac{1}{2} \textbf{w}^{\intercal} \textbf{w}
             + \frac{C}{kN}\sum_{n=1}^N\left(\xi_n\right)^k \\
             &\phantom{\textbf{w}^*, b^*  = }\st \nonumber \\ 
-            &y_n\left(\textbf{w}^\intercal\textbf{w}+b\right) \geq 1 - \xi_n \; \forall n \in \{k \in
-            \mathbb{N} | k < N\}
+            &y_n\left(\textbf{w}^\intercal\textbf{w}+b\right) \geq 1 - \xi_n \; \forall n \in \{l \in
+            \mathbb{N} | l < N\}
         \end{align}
           \item typically, $k\in\{1,2\}$
         \item \fullcite{barber_12_bayesian} for more details
@@ -61,7 +61,7 @@
           \item For prediction, the maximum scoring classifier determines the label
         \begin{itemize}
               \item[] $\displaystyle y_{\text{predict}} = \argmax_y \;
-            \left(\textbf{w}_y^{\intercal}\textbf{x} + b_y\right) $
+            \bigl(\left(\textbf{w}_y\right)^{\intercal}\textbf{x} + b_y\bigr) $
         \end{itemize}
     \end{itemize}
 \end{frame}

@@ -41,12 +41,42 @@
             \end{scope}
         \end{tikzpicture}
     \end{figure}
-            
-    \begin{itemize}
-          \item Extract cell lineages from embryo data.
-          \item Reconstruct fates of all cells in the embryo.
-          \item Applicable in 2D and 3D.
-    \end{itemize}
+    % \begin{itemize}
+    %       \item Extract cell lineages from embryo data.
+    %       \item Reconstruct fates of all cells in the embryo.
+    %       \item Applicable in 2D and 3D.
+    % \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Struct SVM Tracking Real Objective}
+    \newcommand{\trackingExampleScale}{0.35}
+    \begin{center}
+        \begin{tikzpicture}
+            \node (score) { \includegraphics[width=0.85\textwidth]{images/struct_svm_objective_4by3_no-cb.pdf} };
+            \begin{scope}[x={($(score.south east)-(score.south west)$)},y={($(score.north
+                    west)-(score.south west)$)}, overlay]
+                \begin{scope}[axis/.style={very thick, ->, >=stealth'}]
+                    \draw[axis] (-0.55, -0.5) -- (0.52, -0.5) node (xaxis) [below] {$w_1$};
+                    \draw[axis] (-0.5, -0.55) -- (-0.5, 0.52) node (yaxis) [left]  {$w_2$};
+                \end{scope}
+                \uncover<1->{ \node[score_tracking] (t0) at ( 0.3, -0.15 ) {\input{images/cell_tracking/scores/best}}; }
+                \uncover<2->{ \node[score_tracking] (t1) at ( 0.25, 0.05 ) {\input{images/cell_tracking/scores/missed_just_one}}; }
+                \uncover<3->{ \node[score_tracking] (t2) at ( 0.2, 0.4 )  {\input{images/cell_tracking/scores/all_off}}; }
+                \uncover<4->{ \node[score_tracking] (t3) at ( -0.17, 0.25 ) {\input{images/cell_tracking/scores/wrong_division}}; }
+                \uncover<5->{ \node[score_tracking] (t4) at ( -0.2, -0.2 ) {\input{images/cell_tracking/scores/no_div}}; }
+                \uncover<6->{
+                    \node[font=\small, below=of t0, yshift=31] (w0) {$\textbf{w}^*, b^*$};
+                    \node[font=\small, below=of t1, yshift=31] (w1) {$\textbf{w}^{(1)}, b^{(1)}$};
+                    \node[font=\small, below=of t2, yshift=31] (w2) {$\textbf{w}^{(2)}, b^{(2)}$};
+                    \node[font=\small, below=of t3, yshift=31] (w3) {$\textbf{w}^{(3)}, b^{(3)}$};
+                    \node[font=\small, below=of t4, yshift=31] (w4) {$\textbf{w}^{(4)}, b^{(4)}$};
+                }
+            \end{scope}
+    \end{tikzpicture}
+        \end{center}
+
 \end{frame}
 
 
