@@ -24,6 +24,34 @@
 \DeclareMathOperator*{\argmin}{arg\,min}
 \DeclareMathOperator*{\argmax}{arg\,max}
 
+% svm score
+\newcommand{\svmScore}{
+    \textbf{w}^{\intercal}\textbf{x} + b
+}
+
+% \vec
+\newcommand{\VEC}[1]{
+    \textbf{#1}
+}
+
+% dualvec
+\newcommand{\dualvec}[1]{
+    \VEC[1]^{\intercal}
+}
+
+% generalized score
+\newcommand{\structSvmScore}{
+    F(\VEC{x}, Y; \VEC{w})
+}
+
+\newcommand{\combinedFeature}{
+    \Psi(\VEC{x},Y)
+}
+
+\newcommand{\linearScore}{
+    \langle \VEC{w}, \combinedFeature \rangle
+}
+
 
 
 %%% Local Variables: 

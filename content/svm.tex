@@ -74,6 +74,13 @@
 
 \begin{frame}
     \frametitle{From SVM to Structured Learning}
+    \begin{itemize}
+          \item Generalize score: $\svmScore \rightarrow F(\VEC{x}, Y; \VEC{w})$, $Y \in
+        \mathcal{Y}$ structured
+          \item Reasonable choice: $\structSvmScore = \linearScore$%\combinedFeature$
+          \item Prediction: $\displaystyle y_{\text{predict}} = \argmax_Y \linearScore$
+          \item In General: $|\mathcal{Y}| = \infty$
+    \end{itemize}
     \footfullcite{joachims_04_support}
 \end{frame}
 
