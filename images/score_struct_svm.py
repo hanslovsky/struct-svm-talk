@@ -51,3 +51,10 @@ plt.axis('off')
 plt.show()
 
 
+
+contour, minV, maxV = plotObjective([g1, g2, g3, g4], [1.0, -0.0,0.0, 0.0], border = 1.0, mesh_step = 0.005, alpha = 0.5, cmap = 'cool' )
+# cb = plt.colorbar(contour)
+# cb.set_ticks([], True)
+plt.axis('off')
+plt.show()
+

@@ -28,6 +28,21 @@
 \pgfsetlayers{background,bglower,lower,transition,bgupper,upper,main}
 
 
+% factor graph
+
+\definecolor{detectionblue}{RGB}{50,50,230}
+\definecolor{assignmentyellow}{RGB}{255,255,0}
+\definecolor{losspurple}{RGB}{220,0,60}
+
+\tikzstyle{detection}=[circle, draw, very thick, color=detectionblue, text=black,
+fill=detectionblue!10, minimum width=35]
+\tikzstyle{assignment}=[circle, draw, very thick, color=assignmentyellow, fill=assignmentyellow!10,
+text=black, minimum width=35]
+
+\tikzstyle{transfac}=[rectangle, draw, thick, fill=black, color=black]
+\tikzstyle{unaryfac}=[rectangle, draw, thick, color=detectionblue, fill=detectionblue!80]
+\tikzstyle{lossfac}=[unaryfac, color=red, color=losspurple, fill=losspurple!80] 
+
 
 
 %%% Local Variables: 
