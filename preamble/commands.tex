@@ -36,7 +36,7 @@
 
 % dualvec
 \newcommand{\dualvec}[1]{
-    \VEC[1]^{\intercal}
+    \VEC{#1}^{\intercal}
 }
 
 % generalized score
@@ -50,6 +50,10 @@
 
 \newcommand{\linearScore}{
     \langle \VEC{w}, \combinedFeature \rangle
+}
+
+\newcommand{\structuredLoss}{
+    \Delta(Y_i, Y)
 }
 
 

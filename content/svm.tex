@@ -8,10 +8,10 @@
         \end{itemize}
           \item Utilize structured loss for a better evaluation of prediction, 
         \begin{itemize}
-              \item[] \eg quantize prediction error for tracking based on a tree comparison of lineages rather than 1-0 loss for single event matches
+              \item[] \eg quantize prediction error for tracking based on a tree comparison of lineages
         \end{itemize}
     \end{itemize}
-\end{frame}g
+\end{frame}
 
 
 \begin{frame}{Structured Problem - Path Prediction}
@@ -36,9 +36,9 @@
     \begin{itemize}
           \item minimize regularized cost function
           \item[] \begin{align}
-            &\textbf{w}^*, b^*  = \argmin_{\textbf{w}, b} \frac{1}{2} \textbf{w}^{\intercal} \textbf{w}
+            &\textbf{w}^*, b^*, \xi^*  = \argmin_{\textbf{w}, b, \xi} \frac{1}{2} \textbf{w}^{\intercal} \textbf{w}
             + \frac{C}{kN}\sum_{n=1}^N\left(\xi_n\right)^k \\
-            &\phantom{\textbf{w}^*, b^*  = }\st \nonumber \\ 
+            &\phantom{\textbf{w}^*, b^*, \xi^*  = }\st \nonumber \\ 
             &y_n\left(\textbf{w}^\intercal\textbf{w}+b\right) \geq 1 - \xi_n \; \forall n \in \{l \in
             \mathbb{N} | l < N\}
         \end{align}
@@ -77,13 +77,49 @@
     \begin{itemize}
           \item Generalize score: $\svmScore \rightarrow F(\VEC{x}, Y; \VEC{w})$, $Y \in
         \mathcal{Y}$ structured
-          \item Reasonable choice: $\structSvmScore = \linearScore$%\combinedFeature$
-          \item Prediction: $\displaystyle y_{\text{predict}} = \argmax_Y \linearScore$
+          % \item Reasonable choice: $\structSvmScore = \linearScore$%\combinedFeature$
+          \item Prediction: $\displaystyle y_{\text{predict}} = \argmax_Y\ \structSvmScore $%= \argmax_Y \linearScore$
           \item In General: $|\mathcal{Y}| = \infty$
+        \begin{itemize}
+              \item[$\Rightarrow$] Choose/design $F$ appropriately
+        \end{itemize}
+          \item[] \cf \fullcite{joachims_04_support}
     \end{itemize}
-    \footfullcite{joachims_04_support}
 \end{frame}
 
+
+\begin{frame}
+    \frametitle{Structured SVM Training}
+    \begin{itemize}
+          \item Introduce structured loss $\structuredLoss$, \eg Hamming loss
+          \item Minimize loss and ``push away'' training data from wrong examples
+          \item[]
+        \begin{align}
+            &\min_{\VEC{w}, \xi} \frac{1}{2}\dualvec{w}\VEC{w} + \frac{C}{kN} \sum_{i=1}^N(\xi_i)^k
+            \\ \nonumber
+            &\phantom{\min_{\VEC{w}, \xi}} \st \\ \nonumber
+            &F(\VEC{x}_i, Y_i) - F(\VEC{x}_i, Y) \ge \Delta(Y, Y_i) - \xi_i \; \forall i, \; \forall Y \in \mathcal{Y}\setminus Y_i 
+        \end{align}
+          \item Infinite number of constraints.
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Structured SVM Training}
+    \begin{itemize}
+          \item Iteratively add ``most violated constraints''
+          \item[]
+        \begin{align}
+            &\min_{\VEC{w}, \xi} \frac{1}{2}\dualvec{w}\VEC{w} + \frac{C}{kN} \sum_{i=1}^N(\xi_i)^k
+            \\ \nonumber
+            &\phantom{\min_{\VEC{w}, \xi}} \st \\ \nonumber
+            &\max_{Y\in\mathcal{Y}} \bigr(\Delta(Y, Y_i) + F( \VEC{x}_i, Y) - F(\VEC{x}_i, Y_i) \bigl) \le \xi_i
+            \; \forall i 
+        \end{align}
+    \end{itemize}
+    
+\end{frame}
 
 %%% Local Variables: 
 %%% mode: latex
