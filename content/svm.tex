@@ -78,7 +78,7 @@
           \item Generalize score: $\svmScore \rightarrow F(\VEC{x}, Y; \VEC{w})$, $Y \in
         \mathcal{Y}$ structured
           % \item Reasonable choice: $\structSvmScore = \linearScore$%\combinedFeature$
-          \item Prediction: $\displaystyle y_{\text{predict}} = \argmax_Y\ \structSvmScore $%= \argmax_Y \linearScore$
+          \item Prediction: $\displaystyle Y_{\text{predict}} = \argmax_Y\ \structSvmScore $%= \argmax_Y \linearScore$
           \item In General: $|\mathcal{Y}| = \infty$
         \begin{itemize}
               \item[$\Rightarrow$] Choose/design $F$ appropriately
@@ -98,7 +98,7 @@
             &\min_{\VEC{w}, \xi} \frac{1}{2}\dualvec{w}\VEC{w} + \frac{C}{kN} \sum_{i=1}^N(\xi_i)^k
             \\ \nonumber
             &\phantom{\min_{\VEC{w}, \xi}} \st \\ \nonumber
-            &F(\VEC{x}_i, Y_i) - F(\VEC{x}_i, Y) \ge \Delta(Y, Y_i) - \xi_i \; \forall i, \; \forall Y \in \mathcal{Y}\setminus Y_i 
+            &F(\VEC{x}_i, Y_i) - F(\VEC{x}_i, Y) \ge \Delta(Y, Y_i) - \xi_i \; \; \forall i, \; \forall Y \in \mathcal{Y}\setminus Y_i 
         \end{align}
           \item Infinite number of constraints.
     \end{itemize}
@@ -114,9 +114,13 @@
             &\min_{\VEC{w}, \xi} \frac{1}{2}\dualvec{w}\VEC{w} + \frac{C}{kN} \sum_{i=1}^N(\xi_i)^k
             \\ \nonumber
             &\phantom{\min_{\VEC{w}, \xi}} \st \\ \nonumber
-            &\max_{Y\in\mathcal{Y}} \bigr(\Delta(Y, Y_i) + F( \VEC{x}_i, Y) - F(\VEC{x}_i, Y_i) \bigl) \le \xi_i
+            &\max_{Y\in\mathcal{Y}} \bigl(\Delta(Y, Y_i) + F( \VEC{x}_i, Y) - F(\VEC{x}_i, Y_i) \bigr) \le \xi_i
             \; \forall i 
         \end{align}
+        \begin{itemize}
+              \item[$\Rightarrow$] At each iteration solve a potentially expensive problem:
+              \item[] $\displaystyle \max_{Y\in\mathcal{Y}} \bigl(\Delta(Y, Y_i) + F( \VEC{x}_i, Y) \bigr)$
+        \end{itemize}
     \end{itemize}
     
 \end{frame}
