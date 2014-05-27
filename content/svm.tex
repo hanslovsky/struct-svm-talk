@@ -14,8 +14,21 @@
 \end{frame}
 
 
-\begin{frame}{Structured Problem - Path Prediction}
-    PUT IMAGE HERE!!
+\begin{frame}{Structured Problem - Examples}
+    \begin{figure}
+        \centering
+        \begin{subfigure}[b]{0.4\textwidth}
+            \includegraphics[width=\textwidth]{images/external/bertelli.png}
+            \caption{Segmentation}
+            \label{fig:bertelli}
+        \end{subfigure}%
+        \begin{subfigure}[b]{0.4\textwidth}
+            \includegraphics[width=\textwidth]{images/external/joachims-struct-svm-example.png}
+            \caption{Language Parse Tree}
+            \label{fig:joachims}
+        \end{subfigure}
+        \caption{(\protect\subref{fig:bertelli})\footcite{bertelli_11_kernelized}, (\protect\subref{fig:joachims})\footcite{joachims_04_support}}
+    \end{figure}
 \end{frame}
 
 
@@ -81,7 +94,7 @@
           \item Prediction: $\displaystyle Y_{\text{predict}} = \argmax_Y\ \structSvmScore $%= \argmax_Y \linearScore$
           \item In General: $|\mathcal{Y}| = \infty$
         \begin{itemize}
-              \item[$\Rightarrow$] Choose/design $F$ appropriately
+              \item[$\Rightarrow$] Choose $F$ appropriately, \eg $F=\linearScore$
         \end{itemize}
           \item[] \cf \fullcite{joachims_04_support}
     \end{itemize}
@@ -119,7 +132,7 @@
         \end{align}
         \begin{itemize}
               \item[$\Rightarrow$] At each iteration solve a potentially expensive problem:
-              \item[] $\displaystyle \max_{Y\in\mathcal{Y}} \bigl(\Delta(Y, Y_i) + F( \VEC{x}_i, Y) \bigr)$
+              \item[] $\displaystyle \max_{Y\in\mathcal{Y}\setminus Y_i} \bigl(\Delta(Y, Y_i) + F( \VEC{x}_i, Y) \bigr)$
         \end{itemize}
     \end{itemize}
     

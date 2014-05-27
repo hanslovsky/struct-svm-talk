@@ -3,6 +3,7 @@
 \input{preamble/commands.tex}
 \input{preamble/settings.tex}
 
+
 \title{Structured Support Vector Machine for Graphical Model Parameter Learning}
 
 \author{Philipp Hanslovsky}
@@ -10,6 +11,8 @@
 
 \setbeamertemplate{enumerate items}[default]
 \setbeamertemplate{itemize items}[default]
+
+\bibliography{bibliography/bibliography}
 
 \begin{document}
 
@@ -19,9 +22,16 @@
 
 \input{content/structured-learning-cell-tracking}
 
+\begin{frame}[allowframebreaks]
+    \frametitle{References}
+    \printbibliography
+\end{frame}
+
 \appendix % OPTIONAL
 \newcounter{finalframe}
 \setcounter{finalframe}{\value{framenumber}}
+
+
 
 % \input{content/backup}
 
